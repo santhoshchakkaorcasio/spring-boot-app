@@ -18,7 +18,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'YOUR_CLOUD_RUN_SERVICE_NAME'
+      - 'service'
       - '--image=gcr.io/santhosh202310/spring-boot-app:latest'
       - '--platform=managed'
       - '--allow-unauthenticated'
