@@ -8,7 +8,7 @@ steps:
     args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app']
-  - name: 'gcr.io/santhosh202310/spring-boot-app:v1.0'
+  - name: 'gcr.io/santhosh202310/spring-boot-app:latest'
     args: ["service", "--action", "deploy"]
 substitutions:
   _VERBOSITY: '1'
