@@ -1,5 +1,5 @@
 # Use the official OpenJDK image as a parent image
-FROM openjdk:17
+FROM openjdk:17-JDK_slim
 
 # Set the working directory inside the container
 WORKDIR /app
