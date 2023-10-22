@@ -13,8 +13,15 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   
-  - name: 'gcr.io/santhosh202310/spring-boot-app:latest'
-    args: ["service", "--action", "deploy"]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'YOUR_CLOUD_RUN_SERVICE_NAME'
+      - '--image=gcr.io/santhosh202310/spring-boot-app:latest'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
 substitutions:
   _VERBOSITY: '1'
 
