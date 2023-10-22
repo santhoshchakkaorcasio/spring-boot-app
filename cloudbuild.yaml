@@ -10,15 +10,14 @@ steps:
     args: ["init"]  
   - id: Build service Image
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:${latest}', '.']
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:latest', '.']
   - id: Push service Image
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:${latest}']
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   - id: Build service Image
-    name: 'gcr.io/santhosh202310/spring-boot-app:${latest}'
+    name: 'gcr.io/santhosh202310/spring-boot-app:latest'
     args: ["service", "--action", "deploy"]
 substitutions:
   _VERBOSITY: '1'
-  IMAGE_TAG: latest
 
  
