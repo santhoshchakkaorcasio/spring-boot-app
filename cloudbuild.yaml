@@ -1,14 +1,20 @@
 steps:
-  - name: 'openjdk:17'
+  - id: Adding JDK 17 version
+    name: 'openjdk:17'
     entrypoint: 'java'
     args: ['-version']
   #- name: 'gcr.io/cloud-builders/gradle'
   #  args: ['clean', 'build']
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: Initialize Build Process
+    args: ["init"]  
+  - id: Build service Image
+    name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app', '.']
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: Push service Image
+    name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app']
-  - name: 'gcr.io/santhosh202310/spring-boot-app'
+  - id: Build service Image
+    #name: 'gcr.io/santhosh202310/spring-boot-app'
     args: ["service", "--action", "deploy"]
 substitutions:
   _VERBOSITY: '1'
