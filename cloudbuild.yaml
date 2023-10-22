@@ -6,6 +6,7 @@ steps:
   #- name: 'gcr.io/cloud-builders/gradle'
   #  args: ['clean', 'build']
   - id: Initialize Build Process
+    name: 'gcr.io/cloud-builders/docker'
     args: ["init"]  
   - id: Build service Image
     name: 'gcr.io/cloud-builders/docker'
