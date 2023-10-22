@@ -8,10 +8,8 @@ steps:
     args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app']
-  - name: '${_SRE_DOCKER_REPO_PATH}/project-configurator:${_SRE_PC_IMAGE_TAG}'
+  - name: 'gcr.io/santhosh202310/spring-boot-app:latest'
     args: ["service", "--action", "deploy"]
 substitutions:
   _VERBOSITY: '1'
-  _SRE_DOCKER_REPO_PATH: gcr.io/santhosh202310/spring-boot-app@sha256:f626590834ab6f63d5ead305fa37f5be2fd4ccc4f814ac9116ce9e26671cebe6
-  _SRE_PC_IMAGE_TAG: latest
  
