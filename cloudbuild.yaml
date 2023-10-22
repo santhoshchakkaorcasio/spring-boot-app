@@ -22,7 +22,7 @@ steps:
       - '--region=us-central1'
       - '--image=gcr.io/santhosh202310/spring-boot-app:latest'
       - '--platform=managed'
-      - '--allow-unauthenticated'
+      - '--allow-authenticated'
 substitutions:
   _VERBOSITY: '1'
 
