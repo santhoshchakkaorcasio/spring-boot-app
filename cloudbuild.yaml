@@ -14,12 +14,11 @@ steps:
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args:
-      - 'service'
-      - '--action=deploy'
-      - '--region=us-central1'
-      - '--image=gcr.io/santhosh202310/spring-boot-app:latest'
-      - '--platform=managed'
+    args: ["service",
+          "--action","deploy",
+          "--region","us-central1",
+          "--image","gcr.io/santhosh202310/spring-boot-app:latest",
+          "--platform","managed"]
 substitutions:
   _VERBOSITY: '1'
 
