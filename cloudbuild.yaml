@@ -16,13 +16,11 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
-      - 'run'
-      - 'deploy'
       - 'service'
+      - '--action=deploy'
       - '--region=us-central1'
       - '--image=gcr.io/santhosh202310/spring-boot-app:latest'
       - '--platform=managed'
-      - '--allow-authenticated'
 substitutions:
   _VERBOSITY: '1'
 
