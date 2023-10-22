@@ -8,8 +8,9 @@ steps:
     args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app']
-  - name: 'gcr.io/santhosh202310/spring-boot-app:v1.0'
-    args: ["service", "--action", "deploy"]
-substitutions:
-  _VERBOSITY: '1'
+  - name: 'gcr.io/googgle.com/cloudsdktool/cloud-sdk'
+    args: ['run','deploy','spring-boot-cicd','--image',gcr.io/santhosh202310/spring-boot-app
+          ,'--region','us-central1','--allow-unauthenticated']
+images:
+  - gcr.io/santhosh202310/spring-boot-app
  
