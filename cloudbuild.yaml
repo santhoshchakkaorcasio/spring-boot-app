@@ -1,4 +1,7 @@
 steps:
+  - name: 'openjdk:17'
+    entrypoint: 'java'
+    args: ['-version']
   - name: 'gcr.io/cloud-builders/gradle'
     args: ['clean', 'build']
   - name: 'gcr.io/cloud-builders/docker'
@@ -7,6 +10,4 @@ steps:
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app']
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'cloudbuild.yaml']
-  - name: 'openjdk:17'
-    entrypoint: 'java'
-    args: ['-version']
+ 
