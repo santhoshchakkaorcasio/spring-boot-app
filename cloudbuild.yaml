@@ -13,6 +13,5 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   
-  - name: 'gcr.io/santhosh202310/spring-boot-app:latest'
-    args: ['run', 'deploy', 'santhosh202310', '--region=us-central1', '--platform=managed', '--image=gcr.io/santhosh202310/spring-boot-app:latest']
- 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', 'gcr.io/santhosh202310/spring-boot-app:latest']
