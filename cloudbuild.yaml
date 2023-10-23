@@ -14,6 +14,7 @@ steps:
     args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
     args: ["service", "--action", "deploy", "--image", "gcr.io/santhosh202310"]
 
  
