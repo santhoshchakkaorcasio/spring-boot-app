@@ -15,6 +15,14 @@ steps:
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'spring-boot-run', '--image', 'gcr.io/santhosh202310', 'region', 'us-central1']
-
+    args:
+      - 'run'
+      - 'deploy'
+      - 'service'
+      - '--image'
+      - 'gcr.io/santhosh202310/spring-boot-app:latest'
+      - '--platform'
+      - 'managed'
+      - '--region-'
+      - 'us-central1'
  
