@@ -10,5 +10,8 @@ COPY build/libs/*.jar app.jar
 # Expose the port your Spring Boot application will listen on
 EXPOSE 8080
 
+# Permissions 
+RUN chmod +x /app
+
 # Command to run your application
 CMD ["java", "-jar", "app.jar"]
