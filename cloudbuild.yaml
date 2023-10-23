@@ -23,6 +23,6 @@ steps:
       - 'gcr.io/santhosh202310/spring-boot-app:latest'
       - '--platform'
       - 'managed'
-      - '--region-'
+      - '--region'
       - 'us-central1'
  
