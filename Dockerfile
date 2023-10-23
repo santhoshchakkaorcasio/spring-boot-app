@@ -11,7 +11,7 @@ COPY build/libs/*.jar app.jar
 EXPOSE 8080
 
 # Permissions 
-RUN chmod +x /app
+RUN chmod +x ./app
 
 # Command to run your application
 CMD ["java", "-jar", "app.jar"]
