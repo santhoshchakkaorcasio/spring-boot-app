@@ -1,19 +1,28 @@
-steps:
-  
-  - name: 'openjdk:17'
-    entrypoint: 'java'
-    args: ['-version']
-  
-  #- name: 'gcr.io/cloud-builders/gradle'
-  #  args: ['clean', 'build']
-  
+  steps:
+  # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:latest', '.']
- 
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA', '.']
+  # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
-  
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA']
+  # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'santhosh202310', '--region=us-central1', '--platform=managed', '--image=gcr.io/santhosh202310/spring-boot-app:latest']
- 
+    args:
+    - 'run'
+    - 'deploy'
+    - 'spring-boot-app'
+    - '--image'
+    - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
+    - '--region'
+    - 'us-central1'
+    - '--allow'
+    - 'unauthenticated'
+
+  images:
+  - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
+
+  bindings:
+  - members:
+  - allUsers
+  role: roles/run.invoker
