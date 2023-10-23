@@ -16,8 +16,7 @@
     - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
     - '--region'
     - 'us-central1'
-    - '--allow'
-    - 'unauthenticated'
+    - '--allow-unauthenticated'
 
   images:
   - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
