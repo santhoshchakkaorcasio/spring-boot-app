@@ -21,8 +21,3 @@
 
   images:
   - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
-
-  bindings:
-  - members:
-  - allUsers
-  role: roles/run.invoker
