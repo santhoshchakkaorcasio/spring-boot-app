@@ -1,10 +1,10 @@
   steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:latest', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA']
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -13,10 +13,10 @@
     - 'deploy'
     - 'spring-boot-app'
     - '--image'
-    - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
+    - 'gcr.io/santhosh202310/spring-boot-app:latest'
     - '--region'
     - 'us-central1'
     - '--allow-unauthenticated'
 
   images:
-  - 'gcr.io/santhosh202310/spring-boot-app:$COMMIT_SHA'
+  - 'gcr.io/santhosh202310/spring-boot-app:latest'
