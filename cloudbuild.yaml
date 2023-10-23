@@ -8,21 +8,11 @@ steps:
   #  args: ['clean', 'build']
   
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:latest', '.']
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app:$SHORT_SHA', '.']
  
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:latest']
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app:$SHORT_SHA']
   
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      - 'run'
-      - 'deploy'
-      - 'service'
-      - '--image'
-      - 'gcr.io/santhosh202310/spring-boot-app:latest'
-      - '--platform'
-      - 'managed'
-      - '--region'
-      - 'us-central1'
+  - name: 'gcr.io/google.com/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'santhosh202310', '--region=us-central1', '--platform=managed', '--image=gcr.io/santhosh202310/spring-boot-app:latest']
  
