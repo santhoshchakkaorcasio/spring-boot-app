@@ -49,5 +49,5 @@
   #    ARTIFACTORY_PASSWORD: 'CiQA8...[ENCRYPTED_PASSWORD]'
   
   images:
-  - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${TAG}'
+  - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
 
