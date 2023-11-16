@@ -1,19 +1,19 @@
   steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}', '.']
+    args: ['build', '-t', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}']
+    args: ['push', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
     - 'run'
     - 'deploy'
-    - '${IMAGE_NAME}'
+    - '${_IMAGE_NAME}'
     - '--image'
-    - 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}'
+    - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
     - '--region'
     - 'us-central1'
     - '--allow-unauthenticated'
@@ -21,25 +21,25 @@
   # Pull the Image from GCR
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Pull Image from GCR'
-    args: ['pull', 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}']
+    args: ['pull', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}']
    
   # Tag the Image for Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     id: Tag Image for Artifactory
-    args: ['tag', 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}', '${ARTIFACTORY_REPO_URL}/${IMAGE_NAME}:${TAG}']
+    args: ['tag', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${TAG}']
   
   # Push the Image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     id: Push Image to Artifactory
-    args: ['push', '${ARTIFACTORY_REPO_URL}/${IMAGE_NAME}:${TAG}']
+    args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
     secretEnv: ['santhosh', 'santhu1234A1!']
 
   # Variables
-  - substitutions:
-    GCP_PROJECT_ID: 'santhosh202310'
-    IMAGE_NAME: 'spring-boot-app-image'
-    TAG: 'latest'
-    ARTIFACTORY_REPO_URL: 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
+  substitutions:
+    _GCP_PROJECT_ID: 'santhosh202310'
+    _IMAGE_NAME: 'spring-boot-app-image'
+    _TAG: 'latest'
+    _ARTIFACTORY_REPO_URL: 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
 
   # Secrets to securely pass Artifactory credentials
   #secrets:
@@ -49,5 +49,5 @@
   #    ARTIFACTORY_PASSWORD: 'CiQA8...[ENCRYPTED_PASSWORD]'
   
   images:
-  - 'gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${TAG}'
+  - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${TAG}'
 
