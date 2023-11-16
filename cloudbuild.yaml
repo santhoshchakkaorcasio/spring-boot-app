@@ -1,22 +1,53 @@
   steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app-1:latest', '.']
+    args: ['build', '-t', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/spring-boot-app-1:latest']
+    args: ['push', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
     - 'run'
     - 'deploy'
-    - 'spring-boot-app-1'
+    - '${_IMAGE_NAME}'
     - '--image'
-    - 'gcr.io/santhosh202310/spring-boot-app-1:latest'
+    - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
     - '--region'
     - 'us-central1'
     - '--allow-unauthenticated'
 
+  # Pull the Image from GCR
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Pull Image from GCR'
+    args: ['pull', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}']
+   
+  # Tag the Image for Artifactory
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Tag Image for Artifactory
+    args: ['tag', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
+  
+  # Push the Image to JFrog Artifactory
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Push Image to Artifactory
+    args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
+    secretEnv: ['santhosh', 'santhu1234A1!']
+
+  # Variables
+  - substitutions:
+    _GCP_PROJECT_ID: 'santhosh202310'
+    _IMAGE_NAME: 'spring-boot-app-image'
+    _TAG: 'latest'
+    _ARTIFACTORY_REPO_URL: 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
+
+  # Secrets to securely pass Artifactory credentials
+  #secrets:
+  #- kmsKeyName: 'projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]'
+  #  secretEnv:
+  #    ARTIFACTORY_USERNAME: 'CiQAO...[ENCRYPTED_USERNAME]'
+  #    ARTIFACTORY_PASSWORD: 'CiQA8...[ENCRYPTED_PASSWORD]'
+  
   images:
-  - 'gcr.io/santhosh202310/spring-boot-app-1:latest'
+  - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
+
