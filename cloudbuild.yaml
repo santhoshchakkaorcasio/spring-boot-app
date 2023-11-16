@@ -41,7 +41,7 @@
       ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
       ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEExIQ=='
   
-   # Variables
+   # variables
   substitutions:
     _GCP_PROJECT_ID: 'santhosh202310'
     _IMAGE_NAME: 'spring-boot-app-image'
