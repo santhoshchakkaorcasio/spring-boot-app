@@ -43,8 +43,8 @@
   
   secrets:
   - secretEnv:
-      ARTIFACTORY_USERNAME: 'santhosh'
-      ARTIFACTORY_PASSWORD: 'santhu1234A1!'
+      ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
+      ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEExIQ=='
   # Secrets to securely pass Artifactory credentials
   #secrets:
   #- kmsKeyName: 'projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]'
