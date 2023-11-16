@@ -36,7 +36,7 @@
   
   # Secrets to securely pass Artifactory credentials
   secrets:
-   - kmsKeyName: 'projects/[_GCP_PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]'
+   - kmsKeyName: 'projects/${_GCP_PROJECT_ID}/locations/global/keyRings/jfrog-key-ring-name/cryptoKeys/jfrog-key-name'
      secretEnv:
       ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
       ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEExIQ=='
