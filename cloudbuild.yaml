@@ -46,7 +46,7 @@
     _GCP_PROJECT_ID: 'santhosh202310'
     _IMAGE_NAME: 'spring-boot-app-image'
     _TAG: 'latest'
-    _ARTIFACTORY_REPO_URL: 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
+    _ARTIFACTORY_REPO_URL: 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
  
   images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
