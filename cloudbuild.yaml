@@ -32,7 +32,7 @@
   - name: 'gcr.io/cloud-builders/docker'
     id: Push Image to Artifactory
     args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
-    secretEnv: ['santhosh', 'santhu1234A1!']
+    secretEnv: ['ARTIFACTORY_USERNAME', 'ARTIFACTORY_PASSWORD']
 
   # Variables
   substitutions:
@@ -40,7 +40,11 @@
     _IMAGE_NAME: 'spring-boot-app-image'
     _TAG: 'latest'
     _ARTIFACTORY_REPO_URL: 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
-
+  
+  secrets:
+  - secretEnv:
+      ARTIFACTORY_USERNAME: 'santhosh'
+      ARTIFACTORY_PASSWORD: 'santhu1234A1!'
   # Secrets to securely pass Artifactory credentials
   #secrets:
   #- kmsKeyName: 'projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]'
