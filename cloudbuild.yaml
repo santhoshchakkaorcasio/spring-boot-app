@@ -36,8 +36,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring/cryptoKeys/jfrog-key
     secretEnv:
-      ARTIFACTORY_USERNAME: 'projects/201747314915/secrets/jfrog-artifactory-username'
-      ARTIFACTORY_PASSWORD: 'projects/201747314915/secrets/jfrog-artifactory-username'
+      ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
+      ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
   
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
