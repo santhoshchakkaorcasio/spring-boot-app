@@ -36,8 +36,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/key-ring-name/cryptoKeys/key-name
     secretEnv:
-      ARTIFACTORY_USERNAME: 'CiQAUBRIEEuDE/2i510bsu07wxyIGKn0mxSFjp6ppPt3NzUQ+NcSNQCJprmFBB+qJK6YekC2EXcD2EBCr4mDuoTyu/ni3paLV527UrmI1tEGGPc+0e0/mR3BH1LS'
-      ARTIFACTORY_PASSWORD: 'CiQAUBRIEC92MksPQmT04PYr+If8RqLgY20+KpZSA1LTQ1XEw5QSOQCJprmFA5N1li5C9tQwbz/m8q/mPMkWzou8nKIPNkpFpIIz6wP0pAyT+lrlv7ByC8IuR/dUQFifBw=='
+      ARTIFACTORY_USERNAME: 'CiQAUBRIENDSPVTfWXeDFwHYEnl81B23tM8KJzHCZZ7fW0b7ANoSNQCJprmFA/8jw/8Mww2D8H3L6FFt7zNbYc8AxWbhpZ4Ys11p6rXpQURhrt6etGSE4kIfhZdr'
+      ARTIFACTORY_PASSWORD: 'CiQAUBRIENNwluQqMT9hsBBKa9U01YJ1A8DEYfbZMSDlAu9yewASOQCJprmFerZj56oGSIvs5GbiGGMXOLU+mUJbzNAQsmU0ADaHfW/n0qgFi42UDLMSIAf2SgDiuKgbYw=='
   
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
