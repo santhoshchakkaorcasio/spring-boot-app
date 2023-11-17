@@ -36,8 +36,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring/cryptoKeys/jfrog-key
     secretEnv:
-      ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
-      ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
+      ARTIFACTORY_USERNAME: 'CiQAUBRIEEuDE/2i510bsu07wxyIGKn0mxSFjp6ppPt3NzUQ+NcSNQCJprmFBB+qJK6YekC2EXcD2EBCr4mDuoTyu/ni3paLV527UrmI1tEGGPc+0e0/mR3BH1LS'
+      ARTIFACTORY_PASSWORD: 'CiQAUBRIEC92MksPQmT04PYr+If8RqLgY20+KpZSA1LTQ1XEw5QSOQCJprmFA5N1li5C9tQwbz/m8q/mPMkWzou8nKIPNkpFpIIz6wP0pAyT+lrlv7ByC8IuR/dUQFifBw=='
   
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
