@@ -30,7 +30,7 @@
 
   # Step 3: Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'your-artifactory-repo-url/your-image-name:$TAG_NAME']
+    args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
 
   substitutions:
     _GCP_PROJECT_ID: 'santhosh202310'
