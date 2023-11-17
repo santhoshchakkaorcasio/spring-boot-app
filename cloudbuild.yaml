@@ -44,8 +44,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring
     secretEnv:
-      ARTIFACTORY_USERNAME: 'projects/201747314915/secrets/jfrog-artifactory-username/versions/latest'
-      ARTIFACTORY_PASSWORD: 'projects/201747314915/secrets/jfrog-artifactory-secret/versions/latest'
+      ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
+      ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
 
   images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
