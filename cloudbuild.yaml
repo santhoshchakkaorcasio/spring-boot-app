@@ -40,12 +40,12 @@
     _ARTIFACTORY_PASSWORD: 'santhu1234A1'
     _TAG: 'latest'
     _ARTIFACTORY_REPO_URL: 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
- 
+  # secrets
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring
   secretEnv:
-      ARTIFACTORY_USERNAME: 'cHJvamVjdHMvMjAxNzQ3MzE0OTE1L3NlY3JldHMvamZyb2ctYXJ0aWZhY3RvcnktdXNlcm5hbWUvdmVyc2lvbnMvbGF0ZXN0'
-      ARTIFACTORY_PASSWORD: 'cHJvamVjdHMvMjAxNzQ3MzE0OTE1L3NlY3JldHMvamZyb2ctYXJ0aWZhY3Rvcnktc2VjcmV0L3ZlcnNpb25zL2xhdGVzdA=='
+      ARTIFACTORY_USERNAME: 'projects/201747314915/secrets/jfrog-artifactory-username/versions/latest'
+      ARTIFACTORY_PASSWORD: 'projects/201747314915/secrets/jfrog-artifactory-secret/versions/latest'
 
   images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
