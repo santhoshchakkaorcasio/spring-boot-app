@@ -34,7 +34,7 @@
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
 
   secrets:
-  - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring
+  - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring/cryptoKeys/jfrog-key/cryptoKeyVersions/1
     secretEnv:
       ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
       ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
