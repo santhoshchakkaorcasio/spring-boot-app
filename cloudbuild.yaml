@@ -33,14 +33,6 @@
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
 
-  #substitutions:
-  #  _GCP_PROJECT_ID: 'santhosh202310'
-  #  _IMAGE_NAME: 'spring-boot-app-image'
-  #  _ARTIFACTORY_USER: 'santhosh'
-  #  _ARTIFACTORY_PASSWORD: 'santhu1234A1'
-  #  _TAG: 'latest'
-  #  _ARTIFACTORY_REPO_URL: 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
-  # secrets
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring
     secretEnv:
