@@ -26,7 +26,7 @@
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'sh'
-    args: ['-c', 'echo "$$ARTIFACTORY_PASSWORD" | docker login --username $$ARTIFACTORY_USERNAME --password-stdin chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle']
+    args: ['-c', 'echo "$$ARTIFACTORY_PASSWORD" | docker login --username $$ARTIFACTORY_USERNAME --password-stdin https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app']
     secretEnv: ['ARTIFACTORY_USERNAME', 'ARTIFACTORY_PASSWORD']
 
   # Step 6 Push the image to JFrog Artifactory
