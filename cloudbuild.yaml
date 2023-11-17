@@ -1,19 +1,19 @@
   steps:
   # Step 1 Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}', '.']
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app-image:latest', '.']
   # Step 2 Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}']
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
   # Step 3 Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
     - 'run'
     - 'deploy'
-    - '${_IMAGE_NAME}'
+    - 'spring-boot-app-image'
     - '--image'
-    - 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}'
+    - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
     - '--region'
     - 'us-central1'
     - '--allow-unauthenticated'
@@ -21,7 +21,7 @@
   # Step 4 Pull the Image from GCR
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Pull Image from GCR'
-    args: ['pull', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}']
+    args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
    
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
@@ -31,7 +31,7 @@
 
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
+    args: ['push', '${_ARTIFACTORY_REPO_URL}/spring-boot-app-image:latest']
 
   substitutions:
     _GCP_PROJECT_ID: 'santhosh202310'
@@ -48,5 +48,5 @@
       ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
 
   images:
-  - 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}'
+  - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
 
