@@ -36,8 +36,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring/cryptoKeys/jfrog-key
     secretEnv:
-      ARTIFACTORY_USERNAME: $$_ARTIFACTORY_USERNAME
-      ARTIFACTORY_PASSWORD: $$_ARTIFACTORY_PASSWORD
+      ARTIFACTORY_USERNAME: ${_ARTIFACTORY_USERNAME}
+      ARTIFACTORY_PASSWORD: ${_ARTIFACTORY_PASSWORD}
   
   substitutions:     
    _ARTIFACTORY_USERNAME: 'projects/santhosh202310/secrets/jfrog-artifactory-username/versions/latest'
