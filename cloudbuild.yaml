@@ -25,9 +25,10 @@
    
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args: ['login', '${_ARTIFACTORY_REPO_URL}', '--username', '${_ARTIFACTORY_USER}', '--password', '${_ARTIFACTORY_PASSWORD}']
-  
+    entrypoint: 'sh'
+    args: ['-c', 'echo "$$ARTIFACTORY_PASSWORD" | docker login --username $$ARTIFACTORY_USERNAME --password-stdin $$_ARTIFACTORY_REPO_URL']
+    secretEnv: ['ARTIFACTORY_USERNAME', 'ARTIFACTORY_PASSWORD']
+
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
@@ -40,7 +41,12 @@
     _TAG: 'latest'
     _ARTIFACTORY_REPO_URL: 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
  
-  
+  secrets:
+  - kmsKeyName: projects/santhosh202310/locations/global/keyRings/jfrog-key-ring
+    secretEnv:
+      ARTIFACTORY_USERNAME: 'santhosh'
+      ARTIFACTORY_PASSWORD: 'projects/201747314915/secrets/jfrog-secret/versions/latest'
+
   images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
 
