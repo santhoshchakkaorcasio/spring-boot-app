@@ -26,7 +26,10 @@
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args: ['-c', 'echo "$$_ARTIFACTORY_PASSWORD" | docker login $$_ARTIFACTORY_REPO_URL --username $$_ARTIFACTORY_USER --password-stdin']
+    args:
+      - '-c'
+      - |
+        echo $$_ARTIFACTORY_PASSWORD | docker login $$_ARTIFACTORY_REPO_URL --username $$_ARTIFACTORY_USER --password-stdin
 
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
