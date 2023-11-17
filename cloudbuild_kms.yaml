@@ -23,24 +23,31 @@
     id: 'Pull Image from GCR'
     args: ['pull', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}']
    
-  # Log in to JFrog Artifactory
+  # Tag the Image for Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args: ['-c', 'echo "$$_ARTIFACTORY_PASSWORD" | docker $$_ARTIFACTORY_REPO_URL --username $$_ARTIFACTORY_USER --password-stdin']
-
-  # Step 3: Push the image to JFrog Artifactory
+    id: Tag Image for Artifactory
+    args: ['tag', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
+  
+  # Push the Image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'your-artifactory-repo-url/your-image-name:$TAG_NAME']
-
+    id: Push Image to Artifactory
+    args: ['push', '${_ARTIFACTORY_REPO_URL}/${_IMAGE_NAME}:${_TAG}']
+    secretEnv: ['ARTIFACTORY_USERNAME', 'ARTIFACTORY_PASSWORD']
+  
+  # Secrets to securely pass Artifactory credentials
+  secrets:
+   - kmsKeyName: 'projects/santhosh202310/locations/global/keyRings/jfrog-key-ring/cryptoKeys/jfrog-key'
+     secretEnv:
+      ARTIFACTORY_USERNAME: 'c2FudGhvc2g='
+      ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
+  
+   # variables
   substitutions:
     _GCP_PROJECT_ID: 'santhosh202310'
     _IMAGE_NAME: 'spring-boot-app-image'
-    _ARTIFACTORY_USER: 'santhosh'
-    _ARTIFACTORY_PASSWORD: 'santhu1234A1'
     _TAG: 'latest'
     _ARTIFACTORY_REPO_URL: 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle'
  
-  
   images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:${_TAG}'
 
