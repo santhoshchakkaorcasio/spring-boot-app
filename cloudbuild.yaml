@@ -1,10 +1,10 @@
   steps:
   # Step 1 Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$$_GCP_PROJECT_ID/${_IMAGE_NAME}:${_TAG}', '.']
+    args: ['build', '-t', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}', '.']
   # Step 2 Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$$_GCP_PROJECT_ID/${_IMAGE_NAME}:${_TAG}']
+    args: ['push', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}']
   # Step 3 Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -13,7 +13,7 @@
     - 'deploy'
     - '${_IMAGE_NAME}'
     - '--image'
-    - 'gcr.io/$$_GCP_PROJECT_ID/${_IMAGE_NAME}:${_TAG}'
+    - 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}'
     - '--region'
     - 'us-central1'
     - '--allow-unauthenticated'
@@ -21,7 +21,7 @@
   # Step 4 Pull the Image from GCR
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Pull Image from GCR'
-    args: ['pull', 'gcr.io/$$_GCP_PROJECT_ID/${_IMAGE_NAME}:${_TAG}']
+    args: ['pull', 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}']
    
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
@@ -48,5 +48,5 @@
       ARTIFACTORY_PASSWORD: 'c2FudGh1MTIzNEEx'
 
   images:
-  - 'gcr.io/$$_GCP_PROJECT_ID/${_IMAGE_NAME}:${_TAG}'
+  - 'gcr.io/santhosh202310/${_IMAGE_NAME}:${_TAG}'
 
