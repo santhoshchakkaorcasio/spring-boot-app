@@ -24,26 +24,21 @@
     args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
    
   # Step 5 Log in to JFrog Artifactory
-  - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'sh'
-    args: ['-c', 'echo "$$ARTIFACTORY_PASSWORD" | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $$ARTIFACTORY_USERNAME --password-stdin']
-    secretEnv: ['ARTIFACTORY_USERNAME', 'ARTIFACTORY_PASSWORD']
+  - name: 'gcr.io/cloud-builders/gcloud'
+  id: 'fetch-secret'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "Fetching secrets..."
+    USERNAME='santhosh'
+    PASSWORD=$(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")
+    echo $PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
+
 
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
-  
-  # KMS secrets 
-  secrets:
-  - kmsKeyName: projects/santhosh202310/locations/global/keyRings/key-ring-name/cryptoKeys/key-name
-    secretEnv:
-      ARTIFACTORY_USERNAME: '${ARTIFACTORY_USERNAME_PATH}'
-      ARTIFACTORY_PASSWORD: '${ARTIFACTORY_PASSWORD_PATH}'
-  
-  # substitutions
-  substitutions:
-    ARTIFACTORY_USERNAME_PATH: 'projects/201747314915/secrets/jfrog-artifactory-username/versions/latest'
-    ARTIFACTORY_PASSWORD_PATH: 'projects/201747314915/secrets/jfrog-artifactory-secret/versions/latest'
   
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
