@@ -37,8 +37,8 @@
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/key-ring-name/cryptoKeys/key-name
     secretEnv:
-      ARTIFACTORY_USERNAME: '$$ARTIFACTORY_USERNAME_PATH'
-      ARTIFACTORY_PASSWORD: '$$ARTIFACTORY_PASSWORD_PATH'
+      ARTIFACTORY_USERNAME: '${ARTIFACTORY_USERNAME_PATH}'
+      ARTIFACTORY_PASSWORD: '${ARTIFACTORY_PASSWORD_PATH}'
   
   # substitutions
   substitutions:
