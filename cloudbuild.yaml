@@ -43,7 +43,7 @@
   
   # Step 7 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
+    args: ['push', 'https://chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
   
   # available secrets
   availableSecrets:
