@@ -32,18 +32,18 @@
     - |
        echo "Fetching secrets..."
        USERNAME='santhosh'
-       echo $$JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $$USERNAME --password-stdin
+       echo $$JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/spring-boot-app --username $$USERNAME --password-stdin
     secretEnv:
       - 'JFROG_PASSWORD'
   
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Retag Image for JFrog'
-    args: ['tag', 'gcr.io/santhosh202310/spring-boot-app-image:latest', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
+    args: ['tag', 'gcr.io/santhosh202310/spring-boot-app-image:latest', 'chsanthoshsep.jfrog.io/artifactory/spring-boot-app/spring-boot-app-image:latest']
   
   # Step 7 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/spring-boot-app/spring-boot-app-image']
+    args: ['push', 'chsanthoshsep.jfrog.io/artifactory/spring-boot-app/spring-boot-app-image']
   
   # available secrets
   availableSecrets:
