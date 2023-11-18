@@ -32,12 +32,18 @@
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
-
+  
+  # KMS secrets 
   secrets:
   - kmsKeyName: projects/santhosh202310/locations/global/keyRings/key-ring-name/cryptoKeys/key-name
     secretEnv:
-      ARTIFACTORY_USERNAME: 'projects/201747314915/secrets/jfrog-artifactory-username/versions/latest'
-      ARTIFACTORY_PASSWORD: 'projects/201747314915/secrets/jfrog-artifactory-secret/versions/latest'
+      ARTIFACTORY_USERNAME: '$$ARTIFACTORY_USERNAME_PATH'
+      ARTIFACTORY_PASSWORD: '$$ARTIFACTORY_PASSWORD_PATH'
+  
+  # substitutions
+  substitutions:
+    ARTIFACTORY_USERNAME_PATH: 'projects/201747314915/secrets/jfrog-artifactory-username/versions/latest'
+    ARTIFACTORY_PASSWORD_PATH: 'projects/201747314915/secrets/jfrog-artifactory-secret/versions/latest'
   
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
