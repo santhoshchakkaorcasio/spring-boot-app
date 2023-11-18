@@ -40,7 +40,7 @@
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
   
-  # available secrets
+  # available secrets with no kms
   availableSecrets:
    secretManager:
     - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms/versions/latest
