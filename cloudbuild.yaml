@@ -43,7 +43,7 @@
   # available secrets
   availableSecrets:
    secretManager:
-    - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms/versions/latest
       env: 'JFROG_PASSWORD'
 
   images:
