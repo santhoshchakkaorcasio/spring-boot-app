@@ -43,7 +43,7 @@
   # substitutions
   substitutions:
     USERNAME: 'santhosh'
-    PASSWORD: $(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")
+    PASSWORD: '$(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")'
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
 
