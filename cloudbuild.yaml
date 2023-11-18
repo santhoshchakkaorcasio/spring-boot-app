@@ -25,15 +25,15 @@
    
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/gcloud'
-  id: 'fetch-secret'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    echo "Fetching secrets..."
-    USERNAME='santhosh'
-    PASSWORD=$(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")
-    echo $PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
+    id: 'fetch-secret'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+       echo "Fetching secrets..."
+       USERNAME='santhosh'
+       PASSWORD=$(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")
+       echo $PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
 
 
   # Step 6 Push the image to JFrog Artifactory
