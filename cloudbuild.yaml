@@ -31,19 +31,20 @@
     - '-c'
     - |
        echo "Fetching secrets..."
-       USERNAME=$$USERNAME
-       PASSWORD=$$PASSWORD
-       echo $PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
+       USERNAME='santhosh'
+       echo $JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
 
 
   # Step 6 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'chsanthoshsep.jfrog.io/artifactory/api/gradle/hello-world-gradle/spring-boot-app-image:latest']
   
-  # substitutions
-  substitutions:
-    USERNAME: 'santhosh'
-    PASSWORD: '$(gcloud secrets versions access latest --secret="jfrog-artifactory-password-nokms")'
+  # available secrets
+  availableSecrets:
+   secretManager:
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms
+      env: 'JFROG_PASSWORD'
+
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
 
