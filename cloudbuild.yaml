@@ -32,7 +32,7 @@
     - |
        echo "Fetching secrets..."
        USERNAME='santhosh'
-       echo $JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
+       echo $$JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/artifactory/api/gradle/spring-boot-app --username $USERNAME --password-stdin
 
 
   # Step 6 Push the image to JFrog Artifactory
