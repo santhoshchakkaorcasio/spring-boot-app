@@ -24,7 +24,7 @@
     args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
    
   # Step 5 Log in to JFrog Artifactory
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/docker'
     id: 'fetch-secret'
     entrypoint: 'bash'
     args:
