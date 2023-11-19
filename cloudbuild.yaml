@@ -39,7 +39,7 @@
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Retag Image for JFrog'
-    args: ['tag', 'gcr.io/santhosh202310/spring-boot-app-image:latest', 'chsanthoshsep.jfrog.io/artifactory/api/docker/spring-boot-app-docker/spring-boot-app-image:latest']
+    args: ['tag', 'gcr.io/santhosh202310/spring-boot-app-image:latest', 'chsanthoshsep.jfrog.io/artifactory/api/docker/spring-boot-app-docker']
   
   # Step 7 Push the image to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
