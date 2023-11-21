@@ -30,11 +30,13 @@
     args:
     - '-c'
     - |
-       echo "Fetching secrets..."
-       USERNAME='santhosh'
-       echo $$JFROG_API_KEY | docker login -u $$USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
+     echo "Fetching secrets..."
+     USERNAME='santhosh'
+     # Temporarily print the length of the API key for debugging
+     echo "Length of API Key: ${#JFROG_API_KEY}"
+     echo $JFROG_API_KEY | docker login -u $USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
     secretEnv:
-      - 'JFROG_API_KEY'
+    - 'JFROG_API_KEY'
   
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
