@@ -26,8 +26,7 @@
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    USERNAME: 'santhosh'
-    args: ['-c', 'echo $$JFROG_API_KEY | docker login https://chsanthoshsep.jfrog.io/spring-boot-app-docker --username $$USERNAME --password-stdin']
+    args: ['-c', USERNAME='santhosh','echo $$JFROG_API_KEY | docker login https://chsanthoshsep.jfrog.io/spring-boot-app-docker --username $$USERNAME --password-stdin']
     id: 'push'
     secretEnv: ['JFROG_API_KEY']
   
