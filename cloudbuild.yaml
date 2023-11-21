@@ -31,7 +31,7 @@
     - '-c'
     - |
      echo "Fetching secrets..."
-     USERNAME='santhosh'
+     USERNAME='chsanthosh.sep@gmail.com'
      # Temporarily print the length of the API key for debugging
      echo "Username: $$USERNAME"
      echo " API Key: $$JFROG_API_KEY"
