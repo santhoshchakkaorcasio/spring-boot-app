@@ -24,17 +24,12 @@
     args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
    
   # Step 5 Log in to JFrog Artifactory
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'fetch-secret'
+  - id: "Login to JFrog artifactory"
+    name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args:
-    - '-c'
-    - |
-       echo "Fetching secrets..."
-       USERNAME='santhosh'
-       echo $$JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/spring-boot-app-docker --username $$USERNAME --password-stdin
+    args: ['-c', 'echo $$JFROG_API_KEY | docker login -u _json_key --password-stdin https://chsanthoshsep.jfrog.io/spring-boot-app-docker']
     secretEnv:
-      - 'JFROG_PASSWORD'
+      - 'JFROG_API_KEY'
   
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
@@ -48,8 +43,8 @@
   # available secrets
   availableSecrets:
    secretManager:
-    - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms/versions/latest
-      env: 'JFROG_PASSWORD'
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-api-key/versions/latest
+      env: 'JFROG_API_KEY'
 
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
