@@ -32,7 +32,7 @@
     - |
        echo "Fetching secrets..."
        USERNAME='santhosh'
-       echo $$JFROG_API_KEY | docker login https://chsanthoshsep.jfrog.io/spring-boot-app-docker --username $$USERNAME --password-stdin
+       echo $$JFROG_API_KEY | docker login -u $$USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
     secretEnv:
       - 'JFROG_API_KEY'
   
