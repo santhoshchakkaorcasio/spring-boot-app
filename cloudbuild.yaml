@@ -33,7 +33,8 @@
      echo "Fetching secrets..."
      USERNAME='santhosh'
      # Temporarily print the length of the API key for debugging
-     echo "Length of API Key: ${#JFROG_API_KEY}"
+     echo "Username: $$USERNAME"
+     echo " API Key: $$JFROG_API_KEY"
      echo $$JFROG_API_KEY | docker login -u $$USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
     secretEnv:
     - 'JFROG_API_KEY'
