@@ -51,7 +51,7 @@
   # available secrets
   availableSecrets:
    secretManager:
-    - versionName: projects/201747314915/secrets/jfrog-artifactory-api-key/versions/latest
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-identity-token/versions/latest
       env: 'JFROG_API_KEY'
 
   images:
