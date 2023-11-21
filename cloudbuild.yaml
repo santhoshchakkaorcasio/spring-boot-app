@@ -29,7 +29,7 @@
     entrypoint: 'bash'
     args: ['-c', 'echo $JFROG_API_KEY | docker login -u _json_key --password-stdin https://chsanthoshsep.jfrog.io/spring-boot-app-docker']
     secretEnv:
-      - JFROG_API_KEY
+      - 'JFROG_API_KEY'
   
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
