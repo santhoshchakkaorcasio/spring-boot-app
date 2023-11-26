@@ -1,0 +1,56 @@
+  steps:
+  # Step 1 Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/santhosh202310/spring-boot-app-image:latest', '.']
+  # Step 2 Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
+  # Step 3 Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'run'
+    - 'deploy'
+    - 'spring-boot-app-image'
+    - '--image'
+    - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
+    - '--region'
+    - 'us-central1'
+    - '--allow-unauthenticated'
+
+  # Step 4 Pull the Image from GCR
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Pull Image from GCR'
+    args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
+   
+  # Step 5 Log in to JFrog Artifactory
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'fetch-secret'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+       echo "Fetching secrets..."
+       USERNAME='santhosh'
+       echo $$JFROG_PASSWORD | docker login https://chsanthoshsep.jfrog.io/spring-boot-app-docker --username $$USERNAME --password-stdin
+    secretEnv:
+      - 'JFROG_PASSWORD'
+  
+  # Step 6 Retag Image for JFrog
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Retag Image for JFrog'
+    args: ['tag', 'gcr.io/santhosh202310/spring-boot-app-image:latest', 'chsanthoshsep.jfrog.io/spring-boot-app-docker/spring-boot-app-image:latest']
+  
+  # Step 7 Push the image to JFrog Artifactory
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'chsanthoshsep.jfrog.io/spring-boot-app-docker/spring-boot-app-image']
+  
+  # available secrets
+  availableSecrets:
+   secretManager:
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-password-nokms/versions/latest
+      env: 'JFROG_PASSWORD'
+
+  images:
+  - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
+
