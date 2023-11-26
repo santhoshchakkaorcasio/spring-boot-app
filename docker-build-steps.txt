@@ -1,0 +1,19 @@
+docker Build 
+docker build --platform=linux/amd64 -t spring-boot-app .
+
+docker build -t gcr.io/<your-project-id>/<image-name>:<tag> .
+docker build --platform=linux/amd64 -t gcr.io/santhosh202310/spring-boot-app .
+
+# Authenticate with GCR
+gcloud auth configure-docker
+
+# Push the image to GCR
+docker push gcr.io/<your-project-id>/<image-name>:<tag>
+docker push gcr.io/santhosh202310/spring-boot-app
+
+Docker deploy
+-- Docker Deploy
+   gcloud run deploy spring-boot-server \
+  --image gcr.io/santhosh202310/spring-boot-app \
+  --platform managed \
+  --port 8080
