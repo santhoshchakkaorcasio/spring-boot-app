@@ -34,10 +34,10 @@
      USERNAME='chsanthosh.sep@gmail.com'
      # Temporarily print the length of the API key for debugging
      echo "Username: $$USERNAME"
-     echo " API Key: $$JFROG_IDENTITY_TOKEN"
-     echo $$JFROG_IDENTITY_TOKEN | docker login -u $$USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
+     echo " API Key: $$JFROG_ARTIFACTORY_API_KEY"
+     echo $$JFROG_ARTIFACTORY_API_KEY | docker login -u $$USERNAME --password-stdin https://chsanthoshsep.jfrog.io/
     secretEnv:
-    - 'JFROG_IDENTITY_TOKEN'
+    - 'JFROG_ARTIFACTORY_API_KEY'
   
   # Step 6 Retag Image for JFrog
   - name: 'gcr.io/cloud-builders/docker'
@@ -51,8 +51,8 @@
   # available secrets
   availableSecrets:
    secretManager:
-    - versionName: projects/201747314915/secrets/jfrog-artifactory-identity-token/versions/latest
-      env: 'JFROG_IDENTITY_TOKEN'
+    - versionName: projects/201747314915/secrets/jfrog-artifactory-api-key/versions/latest
+      env: 'JFROG_ARTIFACTORY_API_KEY'
 
   images:
   - 'gcr.io/santhosh202310/spring-boot-app-image:latest'
