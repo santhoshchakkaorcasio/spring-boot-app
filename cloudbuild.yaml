@@ -22,6 +22,13 @@
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Pull Image from GCR'
     args: ['pull', 'gcr.io/santhosh202310/spring-boot-app-image:latest']
+  
+  # Configure JFrog CLI to point to Jfrog Artifactory 
+  - name: 'jfrog-docker-reg2.bintray.io/google-cloud-builder/java/jfrog:0.1'
+    entrypoint: 'bash'
+    args: ['-c', 'jfrog rt c rt-mvn-repo --url=https://chsanthoshsep.jfrog.io --user=chsanthosh.sep@gmail.com --password=$$JFROG_ARTIFACTORY_API_KEY']
+    secretEnv: ['JFROG_ARTIFACTORY_API_KEY']
+    dir: 'maven-example'
    
   # Step 5 Log in to JFrog Artifactory
   - name: 'gcr.io/cloud-builders/docker'
